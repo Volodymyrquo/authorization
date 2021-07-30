@@ -58,11 +58,11 @@ export const LoginForm = ({
     return (
            
         <>
-            <form className="join__form" onSubmit={submitPhoneNumber}>
-                <div className="join__form-wrap">
-                <h3 className="join__form-title">{title}</h3>
-                <h4 className="join__form-text">Join by using your Messenger</h4>
-                <ul className="join__form__list-messangers">
+            <form className="login-form" onSubmit={submitPhoneNumber}>
+                <div className="login-form__wrap">
+                <h3 className="login-form__title">{title}</h3>
+                <h4 className="login-form__text">Join by using your Messenger</h4>
+                <ul className="login-form__list-messangers">
                     {socialLinks.map((v, index) => {
                         let href = "";
 
@@ -82,8 +82,8 @@ export const LoginForm = ({
                         )
                     })}
                 </ul>
-                <h4 className="join__form__form-text">Join by using your Mobile phone</h4>
-                <div className="join__form__input-wrapper">
+                <h4 className="login-form__form-text">Join by using your Mobile phone</h4>
+                <div className="login-form__input-wrapper">
                     <PhoneInput
                         readOnly
                         international
@@ -96,7 +96,7 @@ export const LoginForm = ({
                     />
                     
                     <span></span>
-                    <input onChange={(e) => setNumber(e.target.value)} value={number} className="join__form__input" placeholder={'Enter phone number'} />
+                    <input onChange={(e) => setNumber(e.target.value)} value={number} className="login-form__input" placeholder={'Enter phone number'} />
                     <button type="submit">
                         <img alt="icon" src={sendIcon} />
                     </button>
