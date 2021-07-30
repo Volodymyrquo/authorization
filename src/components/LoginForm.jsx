@@ -4,7 +4,6 @@ import  '../assets/scss/index.scss';
 import PhoneInput from 'react-phone-number-input'
 import { isMobile } from "react-device-detect";
 // import socialLinks from '../../common/data/socialLinks';
-import { useHistory, useLocation } from "react-router-dom";
 // import { sendPhone } from '../../api/api';
 import sendIcon from '../assets/images/send.svg';
 
@@ -13,12 +12,9 @@ export const LoginForm = ({
     sendPhone = () => console.log("Pass api request method to send phone number"), 
     title = 'Join',
     socialLinks = [],
-    // location = {},
 }) => {
     const [countryCode, setCountryCode] = useState();
     const [number, setNumber] = useState('');
-    const history = useHistory();
-    // const location = useLocation();
     
     const goToVeryfycationCodePage = (e) => {
         const messenger = e.target.alt;
@@ -26,13 +22,6 @@ export const LoginForm = ({
         localStorage.setItem("messenger", messenger);
         localStorage.setItem("href", href);
     };
-
-    // const goToConfirmForm = () => history.replace({
-    //     pathname: '/confirmcode',
-    //     state: {
-    //         prevPath: location.pathname,
-    //     }
-    // });
 
     const submitPhoneNumber = (event) => {
         event.preventDefault();
