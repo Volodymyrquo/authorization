@@ -13,11 +13,12 @@ export const LoginForm = ({
     sendPhone = () => console.log("Pass api request method to send phone number"), 
     title = 'Join',
     socialLinks = [],
+    location = {},
 }) => {
     const [countryCode, setCountryCode] = useState();
     const [number, setNumber] = useState('');
     const history = useHistory();
-    const location = useLocation();
+    // const location = useLocation();
     
     const goToVeryfycationCodePage = (e) => {
         const messenger = e.target.alt;
