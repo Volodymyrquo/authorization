@@ -102,7 +102,7 @@ export const LoginForm = ({
                     </button>
                 </div>
                 </div>
-            </form>)
+            </form>
         </>
     )
 }
