@@ -9,12 +9,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import sendIcon from '../assets/images/send.svg';
 
 export const LoginForm = ({
-    goToAuthPage = () => history.replace({
-        pathname: '/confirmcode',
-        state: {
-            prevPath: location.pathname,
-        }
-    }),
+    goToAuthPage = () => console.log("Pass redirect method"),
     sendPhone = () => console.log("Pass api request method to send phone number"), 
     title = 'Join',
     socialLinks = [],
