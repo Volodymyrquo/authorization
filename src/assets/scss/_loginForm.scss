@@ -1,4 +1,5 @@
-@import './variables.scss';
+@import url('react-phone-number-input/style.css');
+
 
 .join__form {
     display: flex;
@@ -24,7 +25,7 @@
         font-weight: bold;
         font-size: 18px;
         font-feature-settings: 'liga' off;
-        color: $color-text-title-sec;
+        color: black;
         text-align: center;
         @media screen and (min-width: 768px) {
             font-size: 25px;
@@ -116,11 +117,10 @@
         // padding-left: 10px;
         // margin-left: 10px;
         margin-right: 15px;
-        font-family: $font-family-secondary;
         width: 120px;
         &::placeholder{
             font-size: 13px;
-            color: $color-text-paragraph;
+            color: black;
             opacity: 0.75;
 
             @media screen and (min-width: 360px) {
@@ -160,18 +160,13 @@
 
 }
 
-.PhoneInput{
-    width: 80px !important;
-    position: relative !important;
-    font-size: 13px;
+// .PhoneInput{
+//     width: 80px !important;
+//     position: relative !important;
+//     font-size: 13px;
 
  
-}
-
-// .PhoneInputCountrySelect{
-//     // height: 200px !important;
 // }
-
 
 .PhoneInputInput{
 
@@ -181,7 +176,6 @@
     outline: none !important;
     background-color: transparent !important;
     width: 0px;
-    font-family: $font-family-secondary !important;
     font-size: 12px !important;
     padding-top: 2px;
     @media screen and (max-width: 359px) {

@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import  '../assets/scss/index.scss';
-import 'react-phone-number-input/style.css'
+// import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { isMobile } from "react-device-detect";
 // import socialLinks from '../../common/data/socialLinks';
