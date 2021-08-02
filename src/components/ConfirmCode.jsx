@@ -1,7 +1,18 @@
 import React, { useState, useRef } from "react";
 import ReactCodeInput from "react-verification-code-input";
 
-const ConfirmCode = ({type = 'text', fieldWidth = 38, fieldHeight = 44, fields = 6, autoFocus = true, setAuthStage, verificationCode, setVerificationCode}) => {
+const ConfirmCode = ({
+    type = 'text', 
+    fieldWidth = 38, 
+    fieldHeight = 44, 
+    fields = 6, 
+    autoFocus = true, 
+    setAuthStage, 
+    verificationCode, 
+    setVerificationCode, 
+    logoSrc,
+    colors,
+}) => {
     
     // const [verificationCode, setVerificationCode] = useState("");
     const input = useRef();
@@ -37,7 +48,11 @@ const ConfirmCode = ({type = 'text', fieldWidth = 38, fieldHeight = 44, fields =
 
         return (
             <div className="sumra-auth-form">
-            
+                {logoSrc && (
+                    <div className="sumra-auth-form-logo">
+                        <img src={logoSrc} alt="logo" />
+                    </div>
+                )}
                 <div className="sumra-verify-box">
                     <h1 className="sumra-verify-title ">Verify Account!</h1>
 
@@ -83,6 +98,7 @@ const ConfirmCode = ({type = 'text', fieldWidth = 38, fieldHeight = 44, fields =
                         </div>
 
                         <button
+                            style={{background: colors ? colors?.buttonBackground: 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}}
                             className={`sumra-Button ${verificationCode.length === fields ? 'sumra-Button-valid' : 'sumra-Button-notvalid'}`}
                             onClick={submitVerificationCode}
                         >

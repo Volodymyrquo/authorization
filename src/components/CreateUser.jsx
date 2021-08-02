@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { loginByCodeAndUsername } from "../api/api";
-// import { useLocation, useHistory } from "react-router-dom";
-// import '../../assets/scss/createUserForm/createUserForm.scss';
+import { loginByCodeAndUsername, createInviteCode } from "../api/api";
 import Url from 'url-parse';
 // import {createInviteReferals} from '../../redux/session/operations';
-// import {getToken, loginSuccess, loginError} from '../../redux/session/actions';
-// import {useDispatch, useSelector} from 'react-redux';
+import checkIcon from '../assets/images/check.svg'
 
  const CreateUser = ({
-     verificationCode,
-     goSuccess,
-     errorMessage,
-     setErrorMessage
+    verificationCode,
+    goSuccess,
+    errorMessage,
+    setErrorMessage,
+    logoSrc,
+    colors,
 }) => {
     // let errorMessage = false;
 
@@ -61,15 +60,25 @@ import Url from 'url-parse';
 
             // sending TOKEN to store
             // dispatch(getToken(response.data.data["access_ token"]))
-            // localStorage.setItem("access_token", access_token);
-
+            // const json = await response.json();
+            // const access_token = json.data["access_ token"];
+            localStorage.setItem("access_token", response.data.data["access_ token"]);
+            // console.log(response.data[])
             // sending REF-CODE AND REF-LINK to store
             if(urlObj?.query !== "" || urlObj?.hash !== "" ){
                 // request for a user that has referrer link
                 // dispatch(createInviteReferals(111, 'DF4DSA'))
+                console.log("BOOM 1")
+                await createInviteCode(111, 'DF4DSA').then((res) => {
+                    console.log(res, ' DATA')
+                }).catch(error => console.log(error.response));
             } else {
                 // request for a user that hasn't referrer link
                 // dispatch(createInviteReferals(111))
+                console.log("BOOM 2")
+                let res = await createInviteCode(111).then(res => console.log(res, " res")).catch(error => console.log(error.response))
+
+                console.log(res)
             }
             // setWithExpiry("myKey", "THIS FOR TEST", 30000)
             goSuccess();
@@ -79,6 +88,11 @@ import Url from 'url-parse';
 
         return (
             <div>
+                {logoSrc && (
+                    <div className="sumra-auth-form-logo">
+                        <img src={logoSrc} alt="logo" />
+                    </div>
+                )}
                 <div className="sumra-create-username-box">
                     <h1 className="sumra-create-username-title">
                         Create Username
@@ -94,6 +108,9 @@ import Url from 'url-parse';
                                 onChange={(e) => changeInput(e)}
                             />
 
+                                {username.length > 4 && (
+                                    <img className="sumra-input-icon-wrap" src={checkIcon} width="22" />
+                                )}
                             {/* <img
                                 className="sumra-input-fieldset-icon-right"
                                 src={validIconSrc}
@@ -107,6 +124,7 @@ import Url from 'url-parse';
                             </div>
                         )}
                         <button
+                            style={{background: colors ? colors?.buttonBackground: 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}}
                             className={`sumra-Button ${!errorMessage && username.length > 4 ? 'sumra-Button-valid' : 'sumra-Button-notvalid'}`}
                             onClick={(e) => submitUserForm(e)}
                         >

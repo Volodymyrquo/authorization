@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     padding: 20px 5px 20px;
-    background: #2341A1;
+    // background: #2341A1;
     border-radius: 20px;
     width: 100%;
 
@@ -20,28 +20,57 @@
         padding: 35px 35px 45px;
     }
 
-    h3{
-        font-weight: bold;
-        font-size: 18px;
-        font-feature-settings: 'liga' off;
-        @media screen and (min-width: 768px) {
-            font-size: 25px;
-        }
-    }
+&__title{
+    font-family: 'DM Sans';
 
-    h4{
-        font-weight: 600;
-        font-size: 14px;
-        text-align: center;
-        letter-spacing: 0.25px;
-        color: rgba(255, 255, 255, 0.75);
-        margin: 20px 0px;
-
-        @media screen and (max-width: 320px) {
-            font-size: 16px;
-        }
+    font-weight: bold;
+    font-size: 18px;
+    font-feature-settings: 'liga' off;
+    color: #fff;
+    @media screen and (min-width: 768px) {
+        font-size: 25px;
     }
+}
+&__title-app{
+
+    font-family: 'DM Sans';
+
+    font-weight: bold;
+    font-size: 18px;
+    font-feature-settings: 'liga' off;
+    color: #2E3140;
+    @media screen and (min-width: 768px) {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+}
+&__text{
+    font-family: 'DM Sans';
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    margin: 15px 0px;
+    color:#C8CFE7;
     
+    span {
+        color:#fff;
+    }
+
+    @media screen and (max-width: 320px) {
+        font-size: 16px;
+    }
+
+    @media screen and (min-width: 480px) {
+        margin-top: 20px;
+    }
+}
+
+&__text-app{
+    color:#4C4E5A;
+    span {
+        color:#000;
+    }
+}
 
 &__wrap{
    width: 100%;
@@ -55,15 +84,30 @@
 &__list-messangers{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    @media screen and (min-width: 330px) {
+        width: 310px;
+    }
+    li {
+        display: inline-block;
+        margin: 4px;
+        border-radius: 5px;
+        width: 44px;
+        height: 44px;
 
-    img{
-        width: 34px;
-
-        @media screen and (min-width: 320px) {
-            width: 36px;
+        @media screen and (min-width: 480px) {
+            margin: 8px;
         }
     }
+    // img{
+        // width: 34px;
+
+        // @media screen and (min-width: 320px) {
+        //     width: 36px;
+        // }
+    // }
 }
 
 &__input-wrapper{
@@ -154,6 +198,30 @@
         width: 100%;
     }
 }
+
+    &__terms-privacy{
+        margin: 20px auto 0 auto;
+        font-family: "DM Sans";
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 22px;
+        text-align: center;
+        color: #7a7b85;
+        width: 100%;
+        padding: 0 10px;
+        a{
+            color: #4C9AFF;
+            text-decoration: none;
+        }
+
+        @media screen and (min-width: 360px) {
+            padding: 0px;
+        }
+
+        @media screen and (min-width: 480px) {
+            margin-top: 30px;
+        }
+    }
 }
 
 
@@ -185,4 +253,60 @@
     padding-left: 5px !important;
     font-size: 15px !important;
     }
+}
+
+
+.sumra-line {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 8px 9px;
+
+    width: 31px;
+    height: 31px;
+    margin: 15px auto 0 auto;
+
+    background: #f5f5f8;
+    border: 2px solid #ffffff;
+
+    box-shadow: 0px 5px 20px rgba(88, 86, 104, 0.12),
+        0px 30px 60px rgba(143, 140, 167, 0.08);
+    border-radius: 50px;
+
+    @media screen and (min-width: 480px) {
+        margin-top: 20px;
+    }
+}
+
+
+.login-button-id{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    cursor: pointer;
+    margin: 15px auto 0 auto;
+    color: #fff;
+    font-family: 'DM Sans';
+    font-size: 17px;
+    font-weight: 700;
+    border-radius: 7px;
+    width: 100%;
+    @media screen and (min-width: 360px) {
+        width: 324px;
+    }
+    @media screen and (min-width: 480px) {
+        margin-top: 20px;
+    }
+    // background: linear-gradient(
+    //     90deg,
+    //     rgba(2, 194, 255, 0.5) 0%,
+    //     rgba(14, 106, 227, 0.5) 101.97%
+    // ),
+    // linear-gradient(0deg, #0376da, #0376da),
+    // linear-gradient(270deg, #eda416 0%, #e97819 100%);
+    // filter: drop-shadow(0px 10px 20px rgba(234, 123, 25, 0.1)),
+    //     drop-shadow(0px 10px 20px rgba(97, 105, 255, 0.1));
 }

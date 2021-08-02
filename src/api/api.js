@@ -32,19 +32,19 @@ export const getReferralCodes = async (userId) => {
     return response;
 }; // required user-id
 
-export const createInviteCode = async (userId, ref_code) => {
-    const response = await API.post('/v1/referrals/inviting', 
-    {
-    "application_id": "app.sumra.meet",
-    }, {
-    headers: {
-        "user-id": `${userId}`,
-        "referral_code": `${ref_code && ref_code}`,
-    }}).catch(error => {
-       console.log(error.response)
-    })
-    return response;
-}; 
+// export const createInviteCode = async (userId, ref_code) => {
+//     const response = await API.post('/v1/referrals/inviting', 
+//     {
+//     "application_id": "app.sumra.meet",
+//     }, {
+//     headers: {
+//         "user-id": `${userId}`,
+//         "referral_code": `${ref_code && ref_code}`,
+//     }}).catch(error => {
+//        console.log(error.response)
+//     })
+//     return response;
+// }; 
 
 /**
  * login with by code and username 
@@ -58,3 +58,42 @@ export const loginByCodeAndUsername = async (data) => {
         }})
     return response;
 }; 
+
+export const loginById = async (data) => {
+    const response = await axios.post(END_POINTS.SERVER + END_POINTS.AUTHENTIFICATION, 
+        data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }})
+    return response;
+}; 
+
+
+// export const createInviteReferals = (userId, ref_code) => async (dispatch) => {
+
+//     createInviteCode(userId, ref_code)
+//         .then(({data}) => {
+//             dispatch(referralsSuccess(data.data.code, data.data.referral_link)) 
+//             // router?.push('/');
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             // dispatch(loginError(error))
+//         });
+//     }
+
+//http://ec2-34-208-108-203.us-west-2.compute.amazonaws.com:8091/v1/referrals/inviting
+export const createInviteCode = async (userId, ref_code) => {
+    const response = await axios.post('http://ec2-34-208-108-203.us-west-2.compute.amazonaws.com:8091/v1/referrals/inviting', 
+    {
+    "application_id": "app.sumra.meet",
+    }, {
+    headers: {
+        "user-id": `${userId}`,
+        "referral_code": `${ref_code && ref_code}`,
+    }}).catch(error => {
+        console.log(error.response)
+    })
+    return response;
+}; 
+

@@ -14,14 +14,6 @@
     }
 }
 
-.sumra-auth-logo {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .sumra-auth-form {
     display: flex;
@@ -32,6 +24,14 @@
     margin: 0 auto;
     text-align: center;
 
+    &__logo{
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 30px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     // width: 270px;
 }
@@ -58,7 +58,7 @@
     font-weight: bold;
     font-size: 26px;
     text-align: center;
-    color: #B8C7E0;
+    color: #2E3140;
 
     @media screen and (min-width: 480px) {
         margin-bottom: 35px;
@@ -91,10 +91,10 @@
 .sumra-verify-text {
     margin-bottom: 25px;
     // font-family: "DM Sans";
+    font-weight: 400;
     font-size: 16px;
     line-height: 25px;
     text-align: center;
-    font-weight: 700;
     color: #2e3140 !important;
     mix-blend-mode: normal;
     // left: calc(50% - 310px / 2);
@@ -116,11 +116,12 @@
 .sumra-verify-didntreceive {
     display: block;
     margin-bottom: 10px;
-    font-weight: 700;
     font-size: 15px;
     line-height: 22px;
     text-align: center;
     color: rgba(28, 25, 57, 0.8);
+    font-weight: 400;
+
 }
 .sumra-verify-resend {
     display: block;
@@ -227,18 +228,19 @@
     }
     // outline: none;
     border: none;
+    // background: linear-gradient(270deg, #EDA416 0%, #E97819 100%);
     /* Linear */
     // opacity: 35%;
-    background: linear-gradient(
-            90deg,
-            rgba(2, 194, 255, 0.5) 0%,
-            rgba(14, 106, 227, 0.5) 101.97%
-        ),
-        linear-gradient(0deg, #0376da, #0376da),
-        linear-gradient(270deg, #eda416 0%, #e97819 100%);
+    // background: linear-gradient(
+    //         90deg,
+    //         rgba(2, 194, 255, 0.5) 0%,
+    //         rgba(14, 106, 227, 0.5) 101.97%
+    //     ),
+    //     linear-gradient(0deg, #0376da, #0376da),
+    //     linear-gradient(270deg, #eda416 0%, #e97819 100%);
     border-radius: 7px;
-    filter: drop-shadow(0px 10px 20px rgba(234, 123, 25, 0.1)),
-        drop-shadow(0px 10px 20px rgba(97, 105, 255, 0.1));
+    // filter: drop-shadow(0px 10px 20px rgba(234, 123, 25, 0.1)),
+    //     drop-shadow(0px 10px 20px rgba(97, 105, 255, 0.1));
 }
 
 .sumra-Button:hover {

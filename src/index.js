@@ -1,2 +1,3 @@
 export { LoginForm } from './components/LoginForm.jsx';
-export { Auth } from './Auth.js';
+export { OneStepAuth } from './OneStepAuth.js';
+export { LoginWithSumraId } from './LoginWithSumraId';

@@ -2,9 +2,12 @@ import React, {useState, useEffect} from 'react';
 import ConfirmCode from './components/ConfirmCode.jsx';
 import CreateUser from './components/CreateUser.jsx';
 import './assets/scss/index.scss';
-export const Auth = ({
+
+export const OneStepAuth = ({
+    logoSrc,
     goBack = () => console.log('Pass goBack method to return back when page is refreshed'),
-    goSuccess = () => console.log("Pass goSuccess method to login after valid data")
+    goSuccess = () => console.log("Pass goSuccess method to login after valid data"),
+    colors,
 }) => {
     const [authStage, setAuthStage] = useState(1)
     const [verificationCode, setVerificationCode] = useState("");
@@ -31,12 +34,16 @@ export const Auth = ({
                 <div className="confirm-page-cont">
                     {authStage === 1 ? (
                         <ConfirmCode 
+                            colors={colors}
+                            logoSrc={logoSrc}
                             setAuthStage={setAuthStage}
                             verificationCode={verificationCode}
                             setVerificationCode={setVerificationCode}
                         />
                     ) : (
                         <CreateUser 
+                            colors={colors}
+                            logoSrc={logoSrc}
                             setAuthStage={setAuthStage}
                             verificationCode={verificationCode}
                             goSuccess={goSuccess}
