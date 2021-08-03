@@ -84,7 +84,7 @@ export const LoginForm = ({
                             }
 
                             return (
-                                <li key={index} onClick={goToVeryfycationCodePage}>
+                                <li className={socialLinks.length > 7 ? "login-form__li-app" : 'login-form__li'} key={index} onClick={goToVeryfycationCodePage}>
                                     <a href={href} target="_blank" rel="noreferrer">
                                         <img onClick={() => goToAuthPage()}  src={v.image} width={46} alt={v.title}/>
                                     </a>
@@ -142,7 +142,7 @@ export const LoginForm = ({
                             }
 
                             return (
-                                <li key={index} onClick={goToVeryfycationCodePage}>
+                                <li className={socialLinks.length > 7 ? "login-form__li-app" : 'login-form__li'} key={index} onClick={goToVeryfycationCodePage}>
                                     <a href={href} target="_blank" rel="noreferrer">
                                         <img onClick={() => goToAuthPage()}  src={v.image} width={46} alt={v.title}/>
                                     </a>
