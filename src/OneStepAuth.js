@@ -11,8 +11,6 @@ export const OneStepAuth = ({
 }) => {
     const [authStage, setAuthStage] = useState(1)
     const [verificationCode, setVerificationCode] = useState("");
-    const [errorMessage, setErrorMessage] = useState(null)
-
 
     const redirectWhenRefresh = () => {
         let onestepRefresh = localStorage.getItem("onestep-auth-refresh");
@@ -47,8 +45,6 @@ export const OneStepAuth = ({
                             setAuthStage={setAuthStage}
                             verificationCode={verificationCode}
                             goSuccess={goSuccess}
-                            errorMessage={errorMessage}
-                            setErrorMessage={setErrorMessage}
                         />
                     )}
                 </div>

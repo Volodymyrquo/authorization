@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { loginByCodeAndUsername, createInviteCode } from "../api/api";
 import Url from 'url-parse';
-// import {createInviteReferals} from '../../redux/session/operations';
 import checkIcon from '../assets/images/check.svg'
 
  const CreateUser = ({
     verificationCode,
     goSuccess,
-    errorMessage,
-    setErrorMessage,
     logoSrc,
     colors,
 }) => {
-    // let errorMessage = false;
-
+    const [errorMessage, setErrorMessage] = useState(null)
     const [username, setUsername] = useState("")
-    // let verificationCode = location?.state?.verificationCode;
     const timerID = null;
     let urlObj = Url(window.location.href);
 
@@ -28,18 +23,10 @@ import checkIcon from '../assets/images/check.svg'
             clearTimeout(timerID);
         }
     };
-   
-    // useEffect(() => {
-    //     // dispatch(loginError(null))
-    //     // if(verificationCode === undefined) goToMain();
-    // }, [errorMessage])
-
 
     useEffect(() => {
-
     }, [urlObj])
 
-    
     const submitUserForm = async (event) => {
         event.preventDefault();
         
@@ -51,36 +38,24 @@ import checkIcon from '../assets/images/check.svg'
             app_uid: "meet.sumra.web",
         }).catch(error => {
             console.log(error.response)
-            // errorMessage = error.response.data.error_message;
             setErrorMessage(error.response.data.error_message)
         })
 
         if (response?.data?.success) {
-            // dispatch(loginSuccess())
-
-            // sending TOKEN to store
-            // dispatch(getToken(response.data.data["access_ token"]))
-            // const json = await response.json();
-            // const access_token = json.data["access_ token"];
-            localStorage.setItem("access_token", response.data.data["access_ token"]);
-            // console.log(response.data[])
-            // sending REF-CODE AND REF-LINK to store
+            localStorage.setItem("access_token", response.data.data['access_token']);
+            // sending REF-CODE AND REF-LINK to localStorage
             if(urlObj?.query !== "" || urlObj?.hash !== "" ){
                 // request for a user that has referrer link
-                // dispatch(createInviteReferals(111, 'DF4DSA'))
-                console.log("BOOM 1")
-                await createInviteCode(111, 'DF4DSA').then((res) => {
-                    console.log(res, ' DATA')
+                await createInviteCode(111, 'DF4DSA').then(({data}) => {
+                    localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
                 }).catch(error => console.log(error.response));
             } else {
                 // request for a user that hasn't referrer link
-                // dispatch(createInviteReferals(111))
-                console.log("BOOM 2")
-                let res = await createInviteCode(111).then(res => console.log(res, " res")).catch(error => console.log(error.response))
-
-                console.log(res)
+                await createInviteCode(111).then(({data}) => {
+                    localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
+                }).catch(error => console.log(error.response))
             }
-            // setWithExpiry("myKey", "THIS FOR TEST", 30000)
+            // redirect after success
             goSuccess();
             localStorage.removeItem("onestep-auth-refresh");
         }
@@ -108,14 +83,9 @@ import checkIcon from '../assets/images/check.svg'
                                 onChange={(e) => changeInput(e)}
                             />
 
-                                {username.length > 4 && (
-                                    <img className="sumra-input-icon-wrap" src={checkIcon} width="22" />
-                                )}
-                            {/* <img
-                                className="sumra-input-fieldset-icon-right"
-                                src={validIconSrc}
-                                width="22"
-                            /> */}
+                            {username.length > 4 && (
+                                <img className="sumra-input-icon-wrap" src={checkIcon} width="22" />
+                            )}
                         </fieldset>
 
                         {errorMessage && (
