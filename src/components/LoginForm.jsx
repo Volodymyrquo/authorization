@@ -63,11 +63,9 @@ export const LoginForm = ({
         <>
             {type === 'app' ? (
                 <form className="login-form" onSubmit={submitPhoneNumber}>
-                    {logoSrc && (
-                        <div className="sumra-auth-form-logo">
-                            <img src={logoSrc} alt="logo" />
-                        </div>
-                    )}
+                    <div className="sumra-auth-form-logo">
+                        <img src={logoSrc} alt="logo" />
+                    </div>
                    
                     <div className="login-form__wrap">
                     <h3 className="login-form__title-app">Sign Up or Login</h3>

@@ -57,6 +57,7 @@ import checkIcon from '../assets/images/check.svg'
             }
             // redirect after success
             goSuccess();
+            location.href = `/`;
             localStorage.removeItem("onestep-auth-refresh");
         }
     };
