@@ -56,7 +56,7 @@ import checkIcon from '../assets/images/check.svg'
                 }).catch(error => console.log(error.response))
             }
             // redirect after success
-            goSuccess();
+            // goSuccess();
             location.href = `/`;
             localStorage.removeItem("onestep-auth-refresh");
         }
