@@ -3,7 +3,7 @@ import  '../assets/scss/index.scss';
 // import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { isMobile } from "react-device-detect";
-import socialLinks from './socialLinks';
+// import socialLinks from './socialLinks';
 // import { sendPhone } from '../../api/api';
 import sendIcon from '../assets/images/send.svg';
 
@@ -13,7 +13,7 @@ export const LoginForm = ({
     goToAuthPage = () => console.log("Pass redirect method"),
     goToSumraIdPage = () => console.log("Pass redirect method"),
     sendPhone = () => console.log("Pass api request method to send phone number"), 
-    // socialLinks = [],
+    socialLinks = [],
     colors,
 }) => {
     const [countryCode, setCountryCode] = useState();
