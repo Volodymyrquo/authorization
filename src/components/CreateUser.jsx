@@ -44,6 +44,8 @@ import checkIcon from '../assets/images/check.svg'
 
         if (response?.data?.success) {
             localStorage.setItem("access_token", response.data.data['access_token']);
+            console.log("1 REFRESH REFHRES RESFRES ")
+
             // sending REF-CODE AND REF-LINK to localStorage
             if(urlObj?.query !== "" || urlObj?.hash !== "" ){
                 // request for a user that has referrer link
@@ -58,7 +60,9 @@ import checkIcon from '../assets/images/check.svg'
             }
             // redirect after success
             setIsLogIn(true)
-            goSuccess();
+            location.href = `/`;
+            console.log("REFRESH REFRESH REFHRES RESFRES ")
+            // goSuccess();
             localStorage.removeItem("onestep-auth-refresh");
         }
     };
