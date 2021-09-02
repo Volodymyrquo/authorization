@@ -42,22 +42,18 @@ const ConfirmCode = ({
         }
     };
 
-    // window.addEventListener("popstate", () => {
-    //     history.go(1);
-    //   });
-
         return (
-            <div className="sumra-auth-form">
+            <div className="confirm-form">
                 {logoSrc && (
-                    <div className="sumra-auth-form-logo">
+                    <div className="confirm-form__logo">
                         <img src={logoSrc} alt="logo" />
                     </div>
                 )}
-                <div className="sumra-verify-box">
-                    <h1 className="sumra-verify-title ">Verify Account!</h1>
+                <div className="confirm-form__verify-box">
+                    <h1 className="confirm-form__verify-title ">Verify Account!</h1>
 
                     <form>
-                        <div className="sumra-verify-text ">
+                        <div className="confirm-form__verify-text ">
                             Enter 6 digit verification code we have sent to
                             &nbsp;
                             {isPhoneNumber ? (
@@ -79,18 +75,18 @@ const ConfirmCode = ({
                             onComplete={handleComplete}
                         />
                         <div>
-                            <span className="sumra-verify-didntreceive">
+                            <span className="confirm-form__verify-didntreceive">
                                 Didn't receive our code?
                             </span>
                             {isPhoneNumber ? (
                                 <a href={href} target="_blank" rel="noreferrer">
-                                    <span className="sumra-verify-resend">
+                                    <span className="confirm-form__verify-resend">
                                         Resend Code
                                     </span>
                                 </a>
                             ) : (
                                 <a href={href} target="_blank" rel="noreferrer" >
-                                    <span className="sumra-verify-resend">
+                                    <span className="confirm-form__verify-resend">
                                         Resend Code
                                     </span>
                                 </a>
@@ -106,7 +102,7 @@ const ConfirmCode = ({
                         </button>
                     </form>
                 </div>
-                <div className="sumra-terms-privacy">
+                <div className="confirm-form__terms-privacy">
                     By using either Sign Up or Login you agree to our <br />
                     <a href="#">Terms & Privacy Policy.</a>
                 </div>

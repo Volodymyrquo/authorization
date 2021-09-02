@@ -8,7 +8,7 @@ import checkIcon from '../assets/images/check.svg'
     goSuccess,
     logoSrc,
     colors,
-    setIsLogIn
+    setIsLogIn = () => console.log("SET IS LOGIN")
 }) => {
     const [errorMessage, setErrorMessage] = useState(null)
     const [username, setUsername] = useState("")
@@ -44,7 +44,6 @@ import checkIcon from '../assets/images/check.svg'
 
         if (response?.data?.success) {
             localStorage.setItem("access_token", response.data.data['access_token']);
-            console.log("1 REFRESH REFHRES RESFRES ")
 
             // sending REF-CODE AND REF-LINK to localStorage
             if(urlObj?.query !== "" || urlObj?.hash !== "" ){
@@ -61,27 +60,26 @@ import checkIcon from '../assets/images/check.svg'
             // redirect after success
             setIsLogIn(true)
             location.href = `/`;
-            console.log("REFRESH REFRESH REFHRES RESFRES ")
             // goSuccess();
             localStorage.removeItem("onestep-auth-refresh");
         }
     };
 
         return (
-            <div>
+            <div className="createuser-form">
                 {logoSrc && (
                     <div className="sumra-auth-form-logo">
                         <img src={logoSrc} alt="logo" />
                     </div>
                 )}
-                <div className="sumra-create-username-box">
-                    <h1 className="sumra-create-username-title">
+                <div className="createuser-form__username-box">
+                    <h1 className="createuser-form__username-title">
                         Create Username
                     </h1>
-                    <div className="sumra-create-username-text">
+                    <div className="createuser-form__username-text">
                         Please provide following details for your new account
                     </div>
-                    <form className="sumra-form-create-user">
+                    <form>
                         <fieldset className={'sumra-input-fieldset'}>
                             <input
                                 type="text"
@@ -108,7 +106,7 @@ import checkIcon from '../assets/images/check.svg'
                         </button>
                     </form>
                 </div>
-                <div className="sumra-terms-privacy">
+                <div className="createuser-form__terms-privacy">
                     By using either Sign Up or Login you agree to our <br />
                     <a href="#">Terms & Privacy Policy.</a>
                 </div>
