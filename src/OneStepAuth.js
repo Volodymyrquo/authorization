@@ -8,6 +8,7 @@ export const OneStepAuth = ({
     goBack = () => console.log('Pass goBack method to return back when page is refreshed'),
     goSuccess = () => console.log("Pass goSuccess method to login after valid data"),
     colors,
+    setIsLogIn,
 }) => {
     const [authStage, setAuthStage] = useState(1)
     const [verificationCode, setVerificationCode] = useState("");
@@ -45,6 +46,7 @@ export const OneStepAuth = ({
                             setAuthStage={setAuthStage}
                             verificationCode={verificationCode}
                             goSuccess={goSuccess}
+                            setIsLogIn={setIsLogIn}
                         />
                     )}
                 </div>

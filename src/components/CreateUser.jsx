@@ -8,6 +8,7 @@ import checkIcon from '../assets/images/check.svg'
     goSuccess,
     logoSrc,
     colors,
+    setIsLogIn
 }) => {
     const [errorMessage, setErrorMessage] = useState(null)
     const [username, setUsername] = useState("")
@@ -56,6 +57,7 @@ import checkIcon from '../assets/images/check.svg'
                 }).catch(error => console.log(error.response))
             }
             // redirect after success
+            setIsLogIn(true)
             goSuccess();
             localStorage.removeItem("onestep-auth-refresh");
         }
