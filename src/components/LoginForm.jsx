@@ -63,7 +63,7 @@ export const LoginForm = ({
         <>
             {type === 'app' ? (
                 <form className="login-form" onSubmit={submitPhoneNumber}>
-                    <div className="sumra-auth-form-logo">
+                    <div className="login-form__logo">
                         <img src={logoSrc} alt="logo" />
                     </div>
                    
@@ -113,7 +113,7 @@ export const LoginForm = ({
                     </div>
                     </div>
                     <div className="sumra-line">or</div>
-                    <div onClick={() => goToSumraIdPage()} style={{background: colors ? colors?.buttonBackground : 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}} className="login-button-id">
+                    <div onClick={() => goToSumraIdPage()} style={{background: colors ? colors?.buttonBackground : 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}} className="login-form__button-id">
                         Login with Sumra ID
                     </div>
 
