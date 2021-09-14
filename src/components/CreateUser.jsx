@@ -44,7 +44,7 @@ import checkIcon from '../assets/images/check.svg'
 
         if (response?.data?.success) {
             localStorage.setItem("access_token", response.data.data['access_token']);
-
+            localStorage.setItem("username", username);
             // sending REF-CODE AND REF-LINK to localStorage
             if(urlObj?.query !== "" || urlObj?.hash !== "" ){
                 // request for a user that has referrer link
