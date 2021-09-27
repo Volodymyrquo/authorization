@@ -57,7 +57,7 @@ import checkIcon from '../assets/images/check.svg'
                     localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
                 }).catch(error => console.log(error.response))
             }
-            // redirect after success
+            // redirect after successs
             setIsLogIn(true)
             // location.href = `/`;
             goSuccess();
