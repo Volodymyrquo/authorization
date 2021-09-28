@@ -6,13 +6,14 @@ import { isMobile } from "react-device-detect";
 // import socialLinks from './socialLinks';
 // import { sendPhone } from '../../api/api';
 import sendIcon from '../assets/images/send.svg';
+import {sendPhone} from '../api/api'
 
 export const LoginForm = ({
     type = '',
     logoSrc,
     goToAuthPage = () => console.log("Pass redirect method"),
     goToSumraIdPage = () => console.log("Pass redirect method"),
-    sendPhone = () => console.log("Pass api request method to send phone number"), 
+    // sendPhone = () => console.log("Pass api request method to send phone number"), 
     socialLinks = [],
     colors,
 }) => {
@@ -26,7 +27,7 @@ export const LoginForm = ({
         localStorage.setItem("href", href);
     };
 
-    const submitPhoneNumber = (event) => {
+    const submitPhoneNumber = async (event) => {
         event.preventDefault();
 
         if (!number) {
@@ -39,9 +40,54 @@ export const LoginForm = ({
         localStorage.setItem("messenger", phoneNumber);
         localStorage.setItem("href", phoneNumber);
 
-        phoneNumber = phoneNumber.replace("+", "");
+        // phoneNumber = phoneNumber.replace("+", "");
 
-        sendPhone();
+
+        // {
+        //     "code": 200,
+        //     "exist": false,
+        //     "message": "This phone number not exists. SMS sent",
+        //     "title": "Validation for number",
+        //     "type": "success"
+        // }
+
+        // let response = await sendPhone({
+        //     phone_number: number,
+        // }).catch(error => {
+        //     console.log(error.response)
+        // })
+        let response = await sendPhone({
+            phone_number: phoneNumber,
+        }).catch(error => {
+            console.log(error.response)
+        })
+
+        if(response?.data?.success){
+            goToAuthPage();
+        }
+        console.log(phoneNumber)
+        console.log(response, ' res')
+        // if (response?.data?.success) {
+        //     localStorage.setItem("access_token", response.data.data['access_token']);
+        //     localStorage.setItem("username", username);
+        //     // sending REF-CODE AND REF-LINK to localStorage
+        //     if(urlObj?.query !== "" || urlObj?.hash !== "" ){
+        //         // request for a user that has referrer link
+        //         await createInviteCode(111, 'DF4DSA').then(({data}) => {
+        //             localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
+        //         }).catch(error => console.log(error.response));
+        //     } else {
+        //         // request for a user that hasn't referrer link
+        //         await createInviteCode(111).then(({data}) => {
+        //             localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
+        //         }).catch(error => console.log(error.response))
+        //     }
+        //     setIsLogIn(true)
+        //     goSuccess();
+        //     localStorage.removeItem("onestep-auth-refresh");
+        // }
+        // sendPhone();
+
         // sendPhone({
         //     phone_number: phoneNumber,
         //     app_uid: "meet.sumra.web",
@@ -50,7 +96,6 @@ export const LoginForm = ({
         //     (error) => console.error
         // );
 
-        goToAuthPage();
     };
 
     useEffect(() => {
@@ -107,7 +152,7 @@ export const LoginForm = ({
                         
                         <span></span>
                         <input onChange={(e) => setNumber(e.target.value)} value={number} className="login-form__input" placeholder={'Enter phone number'} />
-                        <button type="submit">
+                        <button type="submit" onClick={(e) => submitPhoneNumber(e)}>
                             <img alt="icon" src={sendIcon} />
                         </button>
                     </div>
