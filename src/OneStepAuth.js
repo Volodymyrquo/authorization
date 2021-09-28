@@ -12,6 +12,7 @@ export const OneStepAuth = ({
 }) => {
     const [authStage, setAuthStage] = useState(1)
     const [verificationCode, setVerificationCode] = useState("");
+    const [sid, setSid] = useState(null);
 
     const redirectWhenRefresh = () => {
         let onestepRefresh = localStorage.getItem("onestep-auth-refresh");
@@ -38,6 +39,7 @@ export const OneStepAuth = ({
                             setAuthStage={setAuthStage}
                             verificationCode={verificationCode}
                             setVerificationCode={setVerificationCode}
+                            setSid={setSid}
                         />
                     ) : (
                         <CreateUser 
@@ -47,6 +49,7 @@ export const OneStepAuth = ({
                             verificationCode={verificationCode}
                             goSuccess={goSuccess}
                             setIsLogIn={setIsLogIn}
+                            sid={sid}
                         />
                     )}
                 </div>

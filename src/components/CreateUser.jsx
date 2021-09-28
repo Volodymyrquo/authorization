@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loginByCodeAndUsername, createInviteCode } from "../api/api";
+import { loginByCodeAndUsername, createInviteCode, sendUsername } from "../api/api";
 import Url from 'url-parse';
 import checkIcon from '../assets/images/check.svg'
 
@@ -8,6 +8,7 @@ import checkIcon from '../assets/images/check.svg'
     goSuccess,
     logoSrc,
     colors,
+    sid,
     setIsLogIn = () => console.log("SET IS LOGIN")
 }) => {
     const [errorMessage, setErrorMessage] = useState(null)
@@ -33,10 +34,9 @@ import checkIcon from '../assets/images/check.svg'
         
         if(username.length <= 4) return;
         
-        let response = await loginByCodeAndUsername({
-            code: verificationCode,
+        let response = await sendUsername({
             username: username,
-            app_uid: "meet.sumra.web",
+            sid: sid,
         }).catch(error => {
             console.log(error.response)
             setErrorMessage(error.response.data.error_message)
@@ -64,6 +64,43 @@ import checkIcon from '../assets/images/check.svg'
             localStorage.removeItem("onestep-auth-refresh");
         }
     };
+
+    // const submitUserForm = async (event) => {
+    //     event.preventDefault();
+        
+    //     if(username.length <= 4) return;
+        
+    //     let response = await loginByCodeAndUsername({
+    //         code: verificationCode,
+    //         username: username,
+    //         app_uid: "meet.sumra.web",
+    //     }).catch(error => {
+    //         console.log(error.response)
+    //         setErrorMessage(error.response.data.error_message)
+    //     })
+
+    //     if (response?.data?.success) {
+    //         localStorage.setItem("access_token", response.data.data['access_token']);
+    //         localStorage.setItem("username", username);
+    //         // sending REF-CODE AND REF-LINK to localStorage
+    //         if(urlObj?.query !== "" || urlObj?.hash !== "" ){
+    //             // request for a user that has referrer link
+    //             await createInviteCode(111, 'DF4DSA').then(({data}) => {
+    //                 localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
+    //             }).catch(error => console.log(error.response));
+    //         } else {
+    //             // request for a user that hasn't referrer link
+    //             await createInviteCode(111).then(({data}) => {
+    //                 localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
+    //             }).catch(error => console.log(error.response))
+    //         }
+    //         // redirect after successs
+    //         setIsLogIn(true)
+    //         // location.href = `/`;
+    //         goSuccess();
+    //         localStorage.removeItem("onestep-auth-refresh");
+    //     }
+    // };
 
         return (
             <div className="createuser-form">

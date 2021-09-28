@@ -29,78 +29,36 @@ export const LoginForm = ({
 
     const submitPhoneNumber = async (event) => {
         event.preventDefault();
-
-        if (!number) {
-            return;
-        }
-
+        if (!number) return;
         let code = countryCode;
         let phoneNumber = code + number;
-
         localStorage.setItem("messenger", phoneNumber);
         localStorage.setItem("href", phoneNumber);
-
         // phoneNumber = phoneNumber.replace("+", "");
 
-
-        // {
-        //     "code": 200,
         //     "exist": false,
-        //     "message": "This phone number not exists. SMS sent",
-        //     "title": "Validation for number",
         //     "type": "success"
-        // }
 
-        // let response = await sendPhone({
-        //     phone_number: number,
-        // }).catch(error => {
-        //     console.log(error.response)
-        // })
         let response = await sendPhone({
             phone_number: phoneNumber,
         }).catch(error => {
             console.log(error.response)
         })
 
-        if(response?.data?.success){
+        if(response?.data?.type === 'success'){
+            localStorage.setItem("isExist", JSON.stringify(response.data?.exist));
             goToAuthPage();
         }
-        console.log(phoneNumber)
-        console.log(response, ' res')
-        // if (response?.data?.success) {
-        //     localStorage.setItem("access_token", response.data.data['access_token']);
-        //     localStorage.setItem("username", username);
-        //     // sending REF-CODE AND REF-LINK to localStorage
-        //     if(urlObj?.query !== "" || urlObj?.hash !== "" ){
-        //         // request for a user that has referrer link
-        //         await createInviteCode(111, 'DF4DSA').then(({data}) => {
-        //             localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
-        //         }).catch(error => console.log(error.response));
-        //     } else {
-        //         // request for a user that hasn't referrer link
-        //         await createInviteCode(111).then(({data}) => {
-        //             localStorage.setItem('referrals', JSON.stringify({code:data.data.code, link:data.data.link}))
-        //         }).catch(error => console.log(error.response))
-        //     }
-        //     setIsLogIn(true)
-        //     goSuccess();
-        //     localStorage.removeItem("onestep-auth-refresh");
-        // }
-        // sendPhone();
+        // localStorage.setItem("isExist", JSON.stringify(true));
 
-        // sendPhone({
-        //     phone_number: phoneNumber,
-        //     app_uid: "meet.sumra.web",
-        // }).then(
-        //     (response) => console.log(response),
-        //     (error) => console.error
-        // );
+        // goToAuthPage();
 
     };
 
     useEffect(() => {
         localStorage.removeItem("confirm-refresh");
         localStorage.removeItem("create-refresh");
+        localStorage.removeItem("isExist");
     }, [])
 
     return (

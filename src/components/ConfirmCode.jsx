@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactCodeInput from "react-verification-code-input";
+import {sendCode} from '../api/api'
 
 const ConfirmCode = ({
     type = 'text', 
@@ -12,12 +13,17 @@ const ConfirmCode = ({
     setVerificationCode, 
     logoSrc,
     colors,
+    setSid,
 }) => {
+    const [form, setForm] = useState('code')
+    const [error, setError] = useState(false)
     
     // const [verificationCode, setVerificationCode] = useState("");
     const input = useRef();
     const href = localStorage.getItem("href");
+    let isExist = localStorage.getItem("isExist");
     const isPhoneNumber = href?.[0] === "+" ? true : false;
+
     let messenger = localStorage.getItem("messenger");
     
     const handleChange = (vals) => {
@@ -32,18 +38,55 @@ const ConfirmCode = ({
 
     }
 
-    const submitVerificationCode = (event) => {
+    const submitVerificationCode = async (event) => {
         event.preventDefault();
+        // let isComplete = verificationCode.length === fields;
+        // if(isComplete){
 
-        const isComplete = verificationCode.length === fields;
+            let response = await sendCode({
+                auth_code_from_user: verificationCode,
+            })
+            console.log(response, ' res')
+            console.log(verificationCode)
+    
+            if(response?.data?.validate_auth_code){
+                setError(false);
+                setSid(response.data.sid)
+                setAuthStage(2);
+            } else{
+                setError(true);
+                // delete
+                // setAuthStage(2);
+            }
 
-        if (isComplete) {
-            setAuthStage(2)
-        }
+        // }
+
+        
+        // const isComplete = verificationCode.length === fields;
+
+        // if (isComplete) {
+        //     setAuthStage(2)
+        // }
     };
 
+    const handleNo = () => {
+        window.location.reload();
+        localStorage.removeItem("isExist");
+    }
+
+    const handleYes = () => {
+        // localStorage.removeItem("isExist");
+        setForm('code');
+    }
+    useEffect(() => {
+        if(isExist) setForm('phone')
+    }, [])
+
+    
         return (
-            <div className="confirm-form">
+            <>
+            {form === 'code' ? (
+                <div className="confirm-form">
                 {logoSrc && (
                     <div className="confirm-form__logo">
                         <img src={logoSrc} alt="logo" />
@@ -96,17 +139,61 @@ const ConfirmCode = ({
                         <button
                             style={{background: colors ? colors?.buttonBackground: 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}}
                             className={`sumra-Button ${verificationCode.length === fields ? 'sumra-Button-valid' : 'sumra-Button-notvalid'}`}
-                            onClick={submitVerificationCode}
+                            onClick={(e) => submitVerificationCode(e)}
                         >
                             <span>Continue</span>
                         </button>
                     </form>
+                   {error && <div className="confirm-form__error">Code is not valid</div>} 
                 </div>
                 <div className="confirm-form__terms-privacy">
                     By using either Sign Up or Login you agree to our <br />
                     <a href="#">Terms & Privacy Policy.</a>
                 </div>
             </div>
+            ) : (
+                <div className="confirm-form">
+                {logoSrc && (
+                    <div className="confirm-form__logo">
+                        <img src={logoSrc} alt="logo" />
+                    </div>
+                )}
+                <div className="confirm-form__verify-box">
+                    <h1 className="confirm-form__verify-title ">Confirmation</h1>
+
+                    <div>
+                        <div className="confirm-form__verify-text">
+                            Confirm your phone number
+                            &nbsp;
+                            <div className="confirm-form__phone-confirm">{messenger}</div>
+                        </div>
+
+                        <div className='confirm-form__buttons-phone'>
+                            <button
+                                className={`confirm-form__btn-phone confirm-form__btn-phone--no`}
+                                onClick={() => handleNo()}
+                            >
+                                No  
+                            </button>
+                            <button
+                                style={{background: colors ? colors?.buttonBackground: 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}}
+                                className={`confirm-form__btn-phone confirm-form__btn-phone--yes`}
+                                onClick={() => handleYes()}
+                            >
+                                Yes
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div className="confirm-form__terms-privacy">
+                    By using either Sign Up or Login you agree to our <br />
+                    <a href="#">Terms & Privacy Policy.</a>
+                </div>
+            </div>
+            )}
+            
+            </>
         );
     }
 

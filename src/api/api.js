@@ -21,7 +21,9 @@ export const sendCode = async (data) => {
     const response =  await axios.post(END_POINTS.SERVER + END_POINTS.SEND_CODE, 
        data, {
        headers: {
-           'Content-Type': 'application/json'
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
        }}).catch(error => {
         console.log(error.response)
      })
