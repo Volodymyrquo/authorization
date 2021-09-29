@@ -17,24 +17,33 @@ export const END_POINTS =  {
     SEND_PHONE: 'v1/sms/send-phone',
 }
 
-export const sendCode = async (data) => {
-    const response =  await axios.post(END_POINTS.SERVER + END_POINTS.SEND_CODE, 
-       data, {
-       headers: {
-            'Access-Control-Allow-Origin': '*',
+  export const sendCode = async (data) => {
+    const response =  await axios( 
+       {
+        method: 'post',
+        headers: { 
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
-       }}).catch(error => {
+            'Accept': 'application/json',
+        },
+        url: `${END_POINTS.SERVER + END_POINTS.SEND_CODE}`,
+        data: data 
+       }).catch(error => {
         console.log(error.response)
      })
         return response;
    }; 
-export const sendUsername = async (data) => {
-    const response =  await axios.post(END_POINTS.SERVER + END_POINTS.SEND_USERNAME, 
-       data, {
-       headers: {
-           'Content-Type': 'application/json'
-       }}).catch(error => {
+
+   export const sendUsername = async (data) => {
+    const response =  await axios( 
+       {
+        method: 'post',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        url: `${END_POINTS.SERVER + END_POINTS.SEND_USERNAME}`,
+        data: data 
+       }).catch(error => {
         console.log(error.response)
      })
         return response;
