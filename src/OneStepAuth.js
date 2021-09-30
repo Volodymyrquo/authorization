@@ -10,8 +10,9 @@ export const OneStepAuth = ({
     colors,
     setIsLogIn,
 }) => {
-    const [authStage, setAuthStage] = useState(1)
+    const [authStage, setAuthStage] = useState(1);
     const [verificationCode, setVerificationCode] = useState("");
+    const [status, setStatus] = useState(null);
     const [sid, setSid] = useState(null);
 
     const redirectWhenRefresh = () => {
@@ -39,6 +40,7 @@ export const OneStepAuth = ({
                             setAuthStage={setAuthStage}
                             verificationCode={verificationCode}
                             setVerificationCode={setVerificationCode}
+                            setStatus={setStatus}
                             setSid={setSid}
                         />
                     ) : (
@@ -49,6 +51,7 @@ export const OneStepAuth = ({
                             verificationCode={verificationCode}
                             goSuccess={goSuccess}
                             setIsLogIn={setIsLogIn}
+                            status={status}
                             sid={sid}
                         />
                     )}

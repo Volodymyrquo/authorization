@@ -6,7 +6,7 @@ import { isMobile } from "react-device-detect";
 // import socialLinks from './socialLinks';
 // import { sendPhone } from '../../api/api';
 import sendIcon from '../assets/images/send.svg';
-import {sendPhone} from '../api/api'
+import {sendPhone, sendSMS} from '../api/api'
 
 export const LoginForm = ({
     type = '',
@@ -45,10 +45,21 @@ export const LoginForm = ({
             console.log(error.response)
         })
 
-        if(response?.data?.type === 'success'){
-            localStorage.setItem("isExist", JSON.stringify(response.data?.exist));
-            goToAuthPage();
-        }
+        // const {type, phone_exist} = response?.data;
+        console.log(response)
+        // if(type === 'success'){
+        //     localStorage.setItem("isExist", JSON.stringify(phone_exist));
+        //     if(phone_exist === true){
+        //         goToAuthPage();
+        //     } else if(phone_exist === false){
+        //         let response = await sendSMS({
+        //             phone_number: phoneNumber,
+        //         }).catch(error => {
+        //             console.log(error.response)
+        //         })
+        //         goToAuthPage();
+        //     }
+        // }
         // localStorage.setItem("isExist", JSON.stringify(true));
 
         // goToAuthPage();

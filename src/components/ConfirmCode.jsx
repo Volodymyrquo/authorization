@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactCodeInput from "react-verification-code-input";
-import {sendCode} from '../api/api'
+import {sendCode, sendSMS} from '../api/api'
 
 const ConfirmCode = ({
     type = 'text', 
@@ -13,12 +13,12 @@ const ConfirmCode = ({
     setVerificationCode, 
     logoSrc,
     colors,
+    setStatus,
     setSid,
 }) => {
     const [form, setForm] = useState('code')
     const [error, setError] = useState(false)
     
-    // const [verificationCode, setVerificationCode] = useState("");
     const input = useRef();
     const href = localStorage.getItem("href");
     let isExist = localStorage.getItem("isExist");
@@ -38,35 +38,43 @@ const ConfirmCode = ({
 
     }
 
+
     const submitVerificationCode = async (event) => {
         event.preventDefault();
-        // let isComplete = verificationCode.length === fields;
-        // if(isComplete){
+        let isComplete = verificationCode.length === fields;
+        if(isComplete){
 
-            let response = await sendCode({
-                auth_code_from_user: verificationCode,
-            })
-            console.log(response, ' res')
-            console.log(verificationCode)
-    
-            if(response?.data?.validate_auth_code){
+            let response =  await sendCode({auth_code_from_user: verificationCode,})
+                .then(res => res?.data)
+                .catch(err => err);
+
+            const { type, user_status, sid } = response;
+
+            if(type === 'success'){
                 setError(false);
-                setSid(response.data.sid)
-                setAuthStage(2);
-            } else{
-                setError(true);
-                // delete
+
+                if(user_status === 0){
+                    // a new user
+                    setStatus(user_status);
+                    setSid(sid);
+                    setAuthStage(2);
+                } 
+                else if(user_status === 1){
+                    // already has an account
+                    setStatus(user_status);
+                    setSid(sid);
+                    setAuthStage(2);
+                } 
+                else if(user_status === 2){
+                    // is blocked
+                    setError('You cannot use this service. Go to sumraid.com for identification and get Sumra ID.');
+                }
+                // setSid(response.data.sid)
                 // setAuthStage(2);
+            } else{
+                setError('Code is not valid');
             }
-
-        // }
-
-        
-        // const isComplete = verificationCode.length === fields;
-
-        // if (isComplete) {
-        //     setAuthStage(2)
-        // }
+        }
     };
 
     const handleNo = () => {
@@ -74,12 +82,19 @@ const ConfirmCode = ({
         localStorage.removeItem("isExist");
     }
 
-    const handleYes = () => {
+    const handleYes =  async () => {
         // localStorage.removeItem("isExist");
+        // if(isExist){
+        let response = await sendSMS({
+            phone_number: messenger,
+        }).catch(error => {
+            console.log(error.response)
+        })
+        // }
         setForm('code');
     }
     useEffect(() => {
-        if(isExist) setForm('phone')
+        if(isExist === true) setForm('phone')
     }, [])
 
     
@@ -117,24 +132,27 @@ const ConfirmCode = ({
                             onChange={handleChange}
                             onComplete={handleComplete}
                         />
-                        <div>
-                            <span className="confirm-form__verify-didntreceive">
-                                Didn't receive our code?
-                            </span>
-                            {isPhoneNumber ? (
-                                <a href={href} target="_blank" rel="noreferrer">
-                                    <span className="confirm-form__verify-resend">
-                                        Resend Code
-                                    </span>
-                                </a>
-                            ) : (
-                                <a href={href} target="_blank" rel="noreferrer" >
-                                    <span className="confirm-form__verify-resend">
-                                        Resend Code
-                                    </span>
-                                </a>
-                            )}
-                        </div>
+                        {isPhoneNumber && (
+                            <div>
+                                <span className="confirm-form__verify-didntreceive">
+                                    Didn't receive our code?
+                                </span>
+                                {isPhoneNumber ? (
+                                    <a href={href} target="_blank" rel="noreferrer">
+                                        <span className="confirm-form__verify-resend">
+                                            Resend Code
+                                        </span>
+                                    </a>
+                                ) : (
+                                    <a href={href} target="_blank" rel="noreferrer" >
+                                        <span className="confirm-form__verify-resend">
+                                            Resend Code
+                                        </span>
+                                    </a>
+                                )}
+                            </div>
+                        )}
+                        
 
                         <button
                             style={{background: colors ? colors?.buttonBackground: 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}}
@@ -144,7 +162,7 @@ const ConfirmCode = ({
                             <span>Continue</span>
                         </button>
                     </form>
-                   {error && <div className="confirm-form__error">Code is not valid</div>} 
+                   {error && <div className="confirm-form__error">{error}</div>} 
                 </div>
                 <div className="confirm-form__terms-privacy">
                     By using either Sign Up or Login you agree to our <br />

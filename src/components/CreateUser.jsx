@@ -8,11 +8,13 @@ import checkIcon from '../assets/images/check.svg'
     goSuccess,
     logoSrc,
     colors,
+    status,
     sid,
     setIsLogIn = () => console.log("SET IS LOGIN")
 }) => {
     const [errorMessage, setErrorMessage] = useState(null)
     const [username, setUsername] = useState("")
+
     const timerID = null;
     let urlObj = Url(window.location.href);
 
@@ -32,20 +34,22 @@ import checkIcon from '../assets/images/check.svg'
     const submitUserForm = async (event) => {
         event.preventDefault();
         
-        if(username.length <= 4) return;
+        if(username.length < 5) return;
         
-        let response = await sendUsername({
-            username: username,
-            sid: sid,
-        }).catch(error => {
-            console.log(error.response)
-            setErrorMessage(error.response.data.error_message)
-        })
+        let response =  await sendUsername({
+            username,
+            sid 
+        }).then(res => res?.data)
+          .catch(err => err);
 
-        if (response?.data?.success) {
-            localStorage.setItem("access_token", response.data.data['access_token']);
+        const { type, token, user_status } = response;
+
+        if (type === 'success') {
+            localStorage.setItem("access_token", token);
+            // localStorage.setItem("access_token", response.data?.data['access_token']);
             localStorage.setItem("username", username);
             // sending REF-CODE AND REF-LINK to localStorage
+
             if(urlObj?.query !== "" || urlObj?.hash !== "" ){
                 // request for a user that has referrer link
                 await createInviteCode(111, 'DF4DSA').then(({data}) => {
@@ -62,6 +66,15 @@ import checkIcon from '../assets/images/check.svg'
             // location.href = `/`;
             goSuccess();
             localStorage.removeItem("onestep-auth-refresh");
+        } else{
+            if(user_status === 0){
+                // a new user
+                setErrorMessage('This username already exists');
+            } 
+            else if(user_status === 1){
+                // already has an account
+                setErrorMessage('Enter your username');
+            } 
         }
     };
 
@@ -111,10 +124,12 @@ import checkIcon from '../assets/images/check.svg'
                 )}
                 <div className="createuser-form__username-box">
                     <h1 className="createuser-form__username-title">
-                        Create Username
+                        {status === 0 ? (`Create Username`) : (`Enter your Username`)}
                     </h1>
                     <div className="createuser-form__username-text">
-                        Please provide following details for your new account
+                        {status === 0 ? 
+                        (`Please provide the following details for your new account`) : 
+                        (`Please provide the following details for your account`)}
                     </div>
                     <form>
                         <fieldset className={'sumra-input-fieldset'}>
@@ -124,7 +139,7 @@ import checkIcon from '../assets/images/check.svg'
                                 onChange={(e) => changeInput(e)}
                             />
 
-                            {username.length > 4 && (
+                            {username.length > 4 && !errorMessage && (
                                 <img className="sumra-input-icon-wrap" src={checkIcon} width="22" />
                             )}
                         </fieldset>
