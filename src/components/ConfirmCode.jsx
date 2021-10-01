@@ -114,7 +114,6 @@ const ConfirmCode = ({
         if(type && type === 'success'){
             setForm('code');
         }
-        setForm('code');
     }
     
 
