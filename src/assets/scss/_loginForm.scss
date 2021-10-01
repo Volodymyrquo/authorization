@@ -179,6 +179,11 @@
         }
     }
 }
+    &__phone-error{
+        margin-top: 15px;
+        color: #FF5630;
+        font-size: 14px;
+    }
 
  &__input{
     height: 50px !important;
@@ -188,8 +193,6 @@
     background-color: transparent !important;
     color: black;
     font-size: 13px;
-    // padding-left: 10px;
-    // margin-left: 10px;
     margin-right: 15px;
     width: 120px;
     &::placeholder{
@@ -199,7 +202,6 @@
         @media screen and (min-width: 360px) {
             font-size: 15px;
         }
-       
     }
 
     @media screen and (min-width: 360px) {
@@ -211,7 +213,6 @@
 
     @media screen and (min-width: 380px) {
         width: 200px;
-
     }
 }
 

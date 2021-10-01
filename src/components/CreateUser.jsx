@@ -71,10 +71,10 @@ import checkIcon from '../assets/images/check.svg'
                 // a new user
                 setErrorMessage('This username already exists');
             } 
-            else if(user_status === 1){
+            else{
                 // already has an account
                 setErrorMessage('Enter your username');
-            } 
+            }
         }
     };
 

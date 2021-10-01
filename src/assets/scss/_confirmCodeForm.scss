@@ -98,6 +98,7 @@
         font-weight: 400;
     }
     &__verify-resend {
+        cursor: pointer;
         display: block;
         position: static;
         height: 22px;
@@ -108,7 +109,7 @@
         font-size: 17px;
         line-height: 22px;
         text-decoration-line: underline;
-        color: #184e91;
+        // color: #377DFF;
         @media screen and (min-width: 480px) {
             margin-bottom: 45px;
     

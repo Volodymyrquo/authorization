@@ -18,10 +18,12 @@ const ConfirmCode = ({
 }) => {
     const [form, setForm] = useState('code')
     const [error, setError] = useState(false)
-    
+    const [phoneError, setPhoneError] = useState(false)
+    // const [resendSeconds, ] = useState(10);
+    const [isResend, setIsResend] = useState(false);
     const input = useRef();
     const href = localStorage.getItem("href");
-    let isExist = localStorage.getItem("isExist");
+    let isExist = JSON.parse(localStorage.getItem("isExist"));
     const isPhoneNumber = href?.[0] === "+" ? true : false;
 
     let messenger = localStorage.getItem("messenger");
@@ -34,8 +36,26 @@ const ConfirmCode = ({
         setVerificationCode(prev => prev.toUpperCase());
     };
 
-    const resendCodeOnPhone = () => {
+    const setResetPhoneTime = () => {
+        setIsResend(false);
+        setTimeout(() => {
+            setIsResend(true);
+        }, 30000)
+    }
 
+    const resendCodeOnPhone = async () => {
+        const response = await sendSMS({
+            phone_number: messenger,
+        }).then(res => res?.data)
+          .catch(err => {
+          setPhoneError(true);
+        return err;
+        });
+        const {type} = response;
+        if(type && type === 'success'){
+            setResetPhoneTime()
+            setPhoneError(false);
+        }
     }
 
 
@@ -83,21 +103,31 @@ const ConfirmCode = ({
     }
 
     const handleYes =  async () => {
-        // localStorage.removeItem("isExist");
-        // if(isExist){
-        let response = await sendSMS({
+        const response = await sendSMS({
             phone_number: messenger,
-        }).catch(error => {
-            console.log(error.response)
-        })
-        // }
+        }).then(res => res?.data)
+          .catch(err => {
+          setPhoneError(true);
+        return err;
+        });
+        const {type} = response;
+        if(type && type === 'success'){
+            setForm('code');
+        }
         setForm('code');
     }
+    
+
+
     useEffect(() => {
         if(isExist === true) setForm('phone')
+
+        if(isPhoneNumber){
+            setResetPhoneTime();
+        }
+
     }, [])
 
-    
         return (
             <>
             {form === 'code' ? (
@@ -115,9 +145,9 @@ const ConfirmCode = ({
                             Enter 6 digit verification code we have sent to
                             &nbsp;
                             {isPhoneNumber ? (
-                                <a target="_blank" rel="noreferrer" href={href} onClick={resendCodeOnPhone()}>
+                                <div>
                                     {messenger}
-                                </a>
+                                </div>
                             ) : (
                                 <a target="_blank" rel="noreferrer" href={href}>{messenger}</a>
                             )}
@@ -137,19 +167,15 @@ const ConfirmCode = ({
                                 <span className="confirm-form__verify-didntreceive">
                                     Didn't receive our code?
                                 </span>
-                                {isPhoneNumber ? (
-                                    <a href={href} target="_blank" rel="noreferrer">
-                                        <span className="confirm-form__verify-resend">
+                                    <div>
+                                        <span 
+                                            onClick={!isResend ? () => console.log("RESEND CODE DISABLED") : 
+                                            () => resendCodeOnPhone()} 
+                                            style={{color: !isResend ? 'black' : '#377DFF'}}
+                                            className="confirm-form__verify-resend">
                                             Resend Code
                                         </span>
-                                    </a>
-                                ) : (
-                                    <a href={href} target="_blank" rel="noreferrer" >
-                                        <span className="confirm-form__verify-resend">
-                                            Resend Code
-                                        </span>
-                                    </a>
-                                )}
+                                    </div>
                             </div>
                         )}
                         
@@ -185,7 +211,7 @@ const ConfirmCode = ({
                             &nbsp;
                             <div className="confirm-form__phone-confirm">{messenger}</div>
                         </div>
-
+                        {phoneError && (<div className='login-form__phone-error'>Wrong a phone number</div>)}
                         <div className='confirm-form__buttons-phone'>
                             <button
                                 className={`confirm-form__btn-phone confirm-form__btn-phone--no`}

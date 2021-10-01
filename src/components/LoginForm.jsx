@@ -19,6 +19,7 @@ export const LoginForm = ({
 }) => {
     const [countryCode, setCountryCode] = useState();
     const [number, setNumber] = useState('');
+    const [phoneError, setPhoneError] = useState(false);
     
     const goToVeryfycationCodePage = (e) => {
         const messenger = e.target.alt;
@@ -41,25 +42,37 @@ export const LoginForm = ({
 
         let response = await sendPhone({
             phone_number: phoneNumber,
-        }).catch(error => {
-            console.log(error.response)
-        })
+        }).then(res => res?.data)
+          .catch(err => {
+              
+            setPhoneError(true);
+            return err;
+        });
 
-        // const {type, phone_exist} = response?.data;
-        console.log(response)
-        // if(type === 'success'){
-        //     localStorage.setItem("isExist", JSON.stringify(phone_exist));
-        //     if(phone_exist === true){
-        //         goToAuthPage();
-        //     } else if(phone_exist === false){
-        //         let response = await sendSMS({
-        //             phone_number: phoneNumber,
-        //         }).catch(error => {
-        //             console.log(error.response)
-        //         })
-        //         goToAuthPage();
-        //     }
-        // }
+
+        const {type, phone_exist, user_status} = response;
+
+        if(type === 'success'){
+            localStorage.setItem("isExist", JSON.stringify(phone_exist));
+            if(phone_exist === true){
+                goToAuthPage();
+            } else{
+                const res = await sendSMS({
+                    phone_number: phoneNumber,
+                }).then(res => res?.data)
+                  .catch(err => {
+                setPhoneError(true);
+                return err;
+                });
+                if(res?.type === 'success'){
+                goToAuthPage();
+              }
+              goToAuthPage();
+
+            }
+        } else{
+            setPhoneError(true)
+        }
         // localStorage.setItem("isExist", JSON.stringify(true));
 
         // goToAuthPage();
@@ -125,6 +138,7 @@ export const LoginForm = ({
                             <img alt="icon" src={sendIcon} />
                         </button>
                     </div>
+                    {phoneError && (<div className='login-form__phone-error'>Wrong a phone number</div>)}
                     </div>
                     <div className="sumra-line">or</div>
                     <div onClick={() => goToSumraIdPage()} style={{background: colors ? colors?.buttonBackground : 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)'}} className="login-form__button-id">
@@ -181,6 +195,7 @@ export const LoginForm = ({
                             <img alt="icon" src={sendIcon} />
                         </button>
                     </div>
+                 
                     </div>
                 </form>
             )}

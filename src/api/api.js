@@ -18,29 +18,6 @@ export const END_POINTS =  {
     SEND_SMS: 'v1/sms/send-sms',
 }
 
-// export const sendCode = async (data) => {
-//     try {
-//         return await axios( 
-//             {
-//             method: 'post',
-//             headers: { 
-//                 'Content-Type': 'application/json',
-//                 'Accept': 'application/json',
-//             },
-//             url: `${END_POINTS.SERVER + END_POINTS.SEND_CODE}`,
-//             data: data 
-//         }).then(res => {
-//             console.log(res, ' res')
-//             console.log(res.data, ' data')
-//             return res?.data;
-//         });
-//     } catch (err) {
-//         // Handle Error Here
-//         console.error(err?.response, ' err?.response');
-//         return err;
-//     }
-// };
-
 export const sendCode = async (data) => {
     try {
         return await axios( 
@@ -77,43 +54,54 @@ export const sendUsername = async (data) => {
     }
 };
 
-//    export const sendUsername = async (data) => {
-//     const response =  await axios( 
-//        {
-//         method: 'post',
-//         headers: { 
-//             'Content-Type': 'application/json',
-//             'Accept': 'application/json',
-//         },
-//         url: `${END_POINTS.SERVER + END_POINTS.SEND_USERNAME}`,
-//         data: data 
-//        }).catch(error => {
-//         console.log(error.response)
-//      })
-//         return response;
-//    }; 
-
 export const sendPhone = async (data) => {
-    const response =  await axios.post(END_POINTS.SERVER + END_POINTS.SEND_PHONE, 
-       data, {
-       headers: {
-           'Content-Type': 'application/json'
-       }}).catch(error => {
-        console.log(error.response)
-     })
-        return response;
-   }; 
+    try {
+        return await axios( 
+            {
+            method: 'post',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            url: `${END_POINTS.SERVER + END_POINTS.SEND_PHONE}`,
+            data: data 
+        })
+    } catch (err) {
+        // Handle Error Here
+        return err.response;
+    }
+};
+
 
 export const sendSMS = async (data) => {
-    const response =  await axios.post(END_POINTS.SERVER + END_POINTS.SEND_SMS, 
-        data, {
-        headers: {
-            'Content-Type': 'application/json'
-        }}).catch(error => {
-        console.log(error.response)
+    try {
+        return await axios( 
+            {
+            method: 'post',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            url: `${END_POINTS.SERVER + END_POINTS.SEND_SMS}`,
+            data: data 
         })
-    return response;
-}; 
+    } catch (err) {
+        // Handle Error Here
+        return err.response;
+    }
+};
+
+
+// export const sendSMS = async (data) => {
+//     const response =  await axios.post(END_POINTS.SERVER + END_POINTS.SEND_SMS, 
+//         data, {
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }}).catch(error => {
+//         console.log(error.response)
+//         })
+//     return response;
+// }; 
 
 export const getReferralCodes = async (userId) => {
     const response = await API.get('/v1/referrals/referral-codes',  {
