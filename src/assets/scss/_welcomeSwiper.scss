@@ -1,0 +1,113 @@
+.sumra-welcome-main {
+  position: absolute;
+  width: 500px;
+  right: 0px;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(
+      0deg,
+      rgba(249, 251, 255, 0.65),
+      rgba(249, 251, 255, 0.65)
+    ),
+    linear-gradient(180deg, #e8f1ff 0%, #ffffff 100%);
+}
+.sumra-welcome-carousel {
+  position: absolute;
+  left: 0px;
+  right: 500px;
+  top: 0px;
+  height: 100%;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide .sumra-wallet-slide {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.sutisfied-clients {
+  position: relative;
+  width: 484px;
+  height: 32px;
+  left: calc(50% - 484px / 2);
+  top: 650px;
+}
+
+.sutisfied-clients span {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 36px;
+  text-transform: capitalize;
+  /* White / 100% */
+
+  color: #ffffff;
+  margin-left: 12px;
+}
+
+.sumra-welcome-testimonials {
+  position: relative;
+  width: 729px;
+  height: 52px;
+  left: calc(50% - 729px / 2);
+  top: 682px;
+
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 145%;
+  /* or 26px */
+
+  text-align: center;
+
+  /* White / 100% */
+
+  color: #ffffff;
+}
+
+.sumra-testimonials-author {
+  position: relative;
+  width: 175px;
+  height: 23px;
+  left: calc(50% - 175px / 2);
+  top: 702px;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+
+  color: #fc8603;
+}

@@ -2,58 +2,57 @@
 @import './confirmCodeForm';
 @import './createUserForm';
 @import './loginSumraIdForm';
+@import './welcomeSwiper';
 
 body {
-  
-    font-family: 'DM Sans';
+  font-family: 'DM Sans';
 
-    background: linear-gradient(
-0deg
-,rgba(249,251,255,.65),rgba(249,251,255,.65)),linear-gradient(
-180deg
-,#e8f1ff 0,#fff 100%);
-  }
-  
-  ul {
-    list-style: none;
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    // border: 0.1px solid forestgreen;
-  }
+  background: linear-gradient(
+      0deg,
+      rgba(249, 251, 255, 0.65),
+      rgba(249, 251, 255, 0.65)
+    ),
+    linear-gradient(180deg, #e8f1ff 0, #fff 100%);
+}
 
-.sumra-auth-form-logo{
+ul {
+  list-style: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // border: 0.1px solid forestgreen;
+}
+
+.sumra-auth-form-logo {
   margin: 0 auto 15px auto;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     margin: 0 auto 30px auto;
   }
 
-  img{
+  img {
     width: 160px;
 
-    @media screen and (min-width: 400px){
+    @media screen and (min-width: 400px) {
       width: 180px;
     }
-    @media screen and (min-width: 640px){
+    @media screen and (min-width: 640px) {
       width: 200px;
     }
 
-    @media screen and (min-width: 768px){
+    @media screen and (min-width: 768px) {
       width: 226px;
     }
   }
-  
 }
 
-.sumra-input-icon-wrap{
+.sumra-input-icon-wrap {
   position: absolute;
   right: 15px;
-  
 }

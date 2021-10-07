@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.3",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "axios": "^0.21.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "bootstrap": "^5.1.0",
     "jwt-decode": "^3.1.2",
     "node-sass": "^6.0.1",
@@ -44,12 +44,16 @@
     "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.2",
     "react-phone-number-input": "^3.1.25",
-    "react-router-dom": "^5.2.0",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
     "react-verification-code-input": "^1.2.9",
+    "swiper": "^6.7.5",
     "url-parse": "^1.5.3"
   },
   "peerDependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0"
   }
 }
