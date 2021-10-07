@@ -27,11 +27,13 @@ export const LoginForm = ({
     const href = e.target.parentElement.href
     localStorage.setItem('messenger', messenger)
     localStorage.setItem('href', href)
-    const referral = localStorage.getItem('referral_code_primary')
+    const referral = window.location.pathname.slice(1)
     localStorage.setItem('referral_code', referral)
     /*  getPath('/verify') */
   }
-
+  const openInNewTab = (url) => {
+    window.open(url, '_blank').focus()
+  }
   const submitPhoneNumber = async (event) => {
     event.preventDefault()
     if (!number) return
@@ -85,8 +87,6 @@ export const LoginForm = ({
     localStorage.removeItem('confirm-refresh')
     localStorage.removeItem('create-refresh')
     localStorage.removeItem('isExist')
-    const referral = window.location.pathname.slice(1)
-    localStorage.setItem('referral_code_primary', referral)
   }, [])
 
   return (
@@ -122,14 +122,12 @@ export const LoginForm = ({
                       }
                       key={index}
                       onClick={goToVeryfycationCodePage}>
-                      <a href={href} target='_blank' rel='noreferrer'>
-                        <img
-                          src={v.image}
-                          onClick={() => goToAuthPage()}
-                          width={46}
-                          alt={v.title}
-                        />
-                      </a>
+                      <img
+                        src={v.image}
+                        onClick={() => openInNewTab(href)}
+                        width={46}
+                        alt={v.title}
+                      />
                     </li>
                   </Link>
                 )
