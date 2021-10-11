@@ -141,3 +141,19 @@ export const getAuthorizationData = async (sumraToken) => {
   )
   return response.data
 }
+
+export const setReferralLink = async (userId, referral_code) => {
+  const response = await axios.post(
+    'http://ec2-34-208-108-203.us-west-2.compute.amazonaws.com:8091/v1/referrals/inviting',
+    {
+      application_id: 'app.sumra.chat',
+      referral_code,
+    },
+    {
+      headers: {
+        'user-id': userId,
+      },
+    }
+  )
+  return response
+}

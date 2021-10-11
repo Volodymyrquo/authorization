@@ -4,6 +4,7 @@ import {
   createInviteCode,
   sendUsername,
   getAuthorizationData,
+  se,
 } from '../api/api'
 import Url from 'url-parse'
 import checkIcon from '../assets/images/check.svg'
@@ -41,14 +42,16 @@ const CreateUser = ({
 
     if (username.length < 5) return
 
-    let response = await sendUsername({
+    let oneStepResponse = await sendUsername({
       username,
       sid,
     })
       .then((res) => res?.data)
       .catch((err) => err)
 
-    const { type, token_chat } = response
+    const { type, token_chat, user_status, token_api, user_id } =
+      oneStepResponse
+    const oneStepUserId = user_id
 
     if (type === 'success') {
       /*  localStorage.setItem("access_token", token);
@@ -81,6 +84,9 @@ const CreateUser = ({
       localStorage.setItem('mx_access_token', access_token)
       localStorage.setItem('mx_crypto_initialised', true)
       localStorage.setItem('sumra_token', token_chat)
+      localStorage.setItem('user_id', oneStepUserId)
+      localStorage.setItem('token_api', token_api)
+
       localStorage.setItem('username', username)
 
       getPath('/home')
@@ -137,7 +143,7 @@ const CreateUser = ({
             style={{
               background: colors
                 ? colors?.buttonBackground
-                : 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)',
+                : 'linear-gradient(270deg, #EDA416 0%, #E97819 100%)',
             }}
             className={`sumra-Button ${
               !errorMessage && username.length > 4

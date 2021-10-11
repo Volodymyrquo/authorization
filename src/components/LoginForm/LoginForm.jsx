@@ -29,7 +29,6 @@ export const LoginForm = ({
     localStorage.setItem('href', href)
     const referral = window.location.pathname.slice(1)
     localStorage.setItem('referral_code', referral)
-    /*  getPath('/verify') */
   }
   const openInNewTab = (url) => {
     window.open(url, '_blank').focus()
@@ -173,7 +172,7 @@ export const LoginForm = ({
             style={{
               background: colors
                 ? colors?.buttonBackground
-                : 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)',
+                : 'linear-gradient(270deg, #EDA416 0%, #E97819 100%)',
             }}
             className='login-form__button-id'>
             Login with Sumra ID
