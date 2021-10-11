@@ -1,260 +1,262 @@
-.confirm-page{
-    width: 100%;
-    min-height: 100vh;
+.confirm-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-page-cont {
+  padding: 50px 0px;
+
+  @media screeen and (min-width: 768px) {
+    padding: 100px 10px;
+  }
+}
+
+.confirm-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  margin: 0 auto;
+  text-align: center;
+
+  &__logo {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 30px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.confirm-page-cont{
-    padding: 50px 0px;
-
-    @media screeen and (min-width: 768px){
-        padding: 100px 10px;
-    }
-}
-
-
-.confirm-form {
+  }
+  &__verify-box {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 0px;
-    margin: 0 auto;
-    text-align: center;
+    padding: 20px 5px;
+    width: 100%;
+    background: #f9fbff;
+    box-shadow: 0px 50px 70px rgba(35, 44, 91, 0.07);
+    border-radius: 12px;
 
-    &__logo{
-        width: 56px;
-        height: 56px;
-        margin: 0 auto 30px auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    @media screen and (min-width: 360px) {
+      // width: 430px;
+      padding: 20px;
     }
-    &__verify-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 5px;
-        width: 100%;
-        background: #f9fbff;
-        box-shadow: 0px 50px 70px rgba(35, 44, 91, 0.07);
-        border-radius: 12px;
-    
-        @media screen and (min-width: 360px) {
-            // width: 430px;
-            padding: 20px;
-        }
-    
-        @media screen and (min-width: 480px) {
-            width: 430px;
-            padding: 40px;
-        }
-    }
-
-    &__verify-title {
-        margin-bottom: 20px;
-        font-weight: bold;
-        font-size: 26px;
-        text-align: center;
-        color: #2E3140;
-    
-        @media screen and (min-width: 480px) {
-            margin-bottom: 35px;
-        }
-    }
-    
-    &__verify-text {
-        margin-bottom: 25px;
-        // font-family: "DM Sans";
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 25px;
-        text-align: center;
-        color: #2e3140 !important;
-        mix-blend-mode: normal;
-        a {
-            color: #4C9AFF;
-            text-decoration: none;
-        }
-    
-        @media screen and (min-width: 360px) {
-            width: 310px;
-        }
-    
-        @media screen and (min-width: 480px) {
-            margin-bottom: 55px;
-        }
-    }
-
-    &__verify-didntreceive {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 15px;
-        line-height: 22px;
-        text-align: center;
-        color: rgba(28, 25, 57, 0.8);
-        font-weight: 400;
-    }
-    &__verify-resend {
-        cursor: pointer;
-        display: block;
-        position: static;
-        height: 22px;
-        top: 32px;
-        margin-bottom: 25px;
-        font-family: "DM Sans";
-        font-weight: bold;
-        font-size: 17px;
-        line-height: 22px;
-        text-decoration-line: underline;
-        // color: #377DFF;
-        @media screen and (min-width: 480px) {
-            margin-bottom: 45px;
-    
-        }
-    }
-    &__terms-privacy {
-        margin-top: 10px;
-        font-family: "DM Sans";
-        font-size: 13px;
-        line-height: 22px;
-        text-align: center;
-        color: #7a7b85;
-        font-weight: 700;
-        a{
-            color: #4C9AFF;
-            text-decoration: none;
-        }
-        @media screen and (min-width: 360px) {
-            width: 308px;
-        }
-    }
-    &__error{
-        text-align: center;
-        margin-top: 10px;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 15px;
-        font-feature-settings: 'liga' off;
-        color: #FF5630;
-    }
-
-    &__buttons-phone{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    &__btn-phone{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 120px;
-        height: 56px;
-        border-radius: 7px;
-        outline: none !important;
-        border: none !important;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        cursor: pointer;
-    }
-    &__btn-phone--yes{
-        background: linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA) !important;
-        color: white !important;
-    }
-    &__btn-phone--no{
-        background: #e4e4e4;
-        color: #000 !important;
-        margin-right: 20px;
-    }
-    &__phone-confirm{
-        color: rgba(55, 125, 255, 1);
-    }
-}
-
-///// 
-.sumra-react-code-input {
-    width: 100% !important;
-    margin-bottom: 25px;
 
     @media screen and (min-width: 480px) {
-        margin-bottom: 45px;
-
+      width: 430px;
+      padding: 40px;
     }
-}
-.sumra-react-code-input > div[class^="styles_react-code-input"] {
+  }
+
+  &__verify-title {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    color: #2e3140;
+
+    @media screen and (min-width: 480px) {
+      margin-bottom: 35px;
+    }
+  }
+
+  &__verify-text {
+    margin-bottom: 25px;
+    // font-family: "DM Sans";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    color: #2e3140 !important;
+    mix-blend-mode: normal;
+    a {
+      color: #4c9aff;
+      text-decoration: none;
+    }
+
+    @media screen and (min-width: 360px) {
+      width: 310px;
+    }
+
+    @media screen and (min-width: 480px) {
+      margin-bottom: 55px;
+    }
+  }
+
+  &__verify-didntreceive {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+    color: rgba(28, 25, 57, 0.8);
+    font-weight: 400;
+  }
+  &__verify-resend {
+    cursor: pointer;
+    display: block;
+    position: static;
+    height: 22px;
+    top: 32px;
+    margin-bottom: 25px;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 22px;
+    text-decoration-line: underline;
+    // color: #377DFF;
+    @media screen and (min-width: 480px) {
+      margin-bottom: 45px;
+    }
+  }
+  &__terms-privacy {
+    margin-top: 10px;
+    font-family: 'DM Sans';
+    font-size: 13px;
+    line-height: 22px;
+    text-align: center;
+    color: #7a7b85;
+    font-weight: 700;
+    a {
+      color: #4c9aff;
+      text-decoration: none;
+    }
+    @media screen and (min-width: 360px) {
+      width: 308px;
+    }
+  }
+  &__error {
+    text-align: center;
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    font-feature-settings: 'liga' off;
+    color: #ff5630;
+  }
+
+  &__buttons-phone {
     display: flex;
-    justify-content: space-between;
-}
-.sumra-react-code-input > div[class^="styles_react-code-input"] input {
-    border: 2px solid #ffffff;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+    align-items: center;
+    justify-content: center;
+  }
+  &__btn-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 56px;
     border-radius: 7px;
+    outline: none !important;
+    border: none !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  &__btn-phone--yes {
+    background: linear-gradient(
+        90deg,
+        rgba(2, 194, 255, 0.5) 0%,
+        rgba(14, 106, 227, 0.5) 101.97%
+      ),
+      linear-gradient(0deg, #0376da, #0376da) !important;
+    color: white !important;
+  }
+  &__btn-phone--no {
+    background: #e4e4e4;
+    color: #000 !important;
+    margin-right: 20px;
+  }
+  &__phone-confirm {
+    color: rgba(55, 125, 255, 1);
+  }
 }
-.sumra-react-code-input > div[class^="styles_react-code-input"] input:focus {
-    border: 2px solid #0975e0;
+
+/////
+.sumra-react-code-input {
+  width: 100% !important;
+  margin-bottom: 25px;
+
+  @media screen and (min-width: 480px) {
+    margin-bottom: 45px;
+  }
+}
+.sumra-react-code-input > div[class^='styles_react-code-input'] {
+  display: flex;
+  justify-content: space-between;
+}
+.sumra-react-code-input > div[class^='styles_react-code-input'] input {
+  border: 2px solid #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 7px;
+}
+.sumra-react-code-input > div[class^='styles_react-code-input'] input:focus {
+  border: 2px solid #ff9e00;
 }
 .sumra-react-code-input
-    > div[class^="styles_react-code-input"]
-    input:first-child {
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
+  > div[class^='styles_react-code-input']
+  input:first-child {
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 .sumra-react-code-input
-    > div[class^="styles_react-code-input"]
-    input:last-child {
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
+  > div[class^='styles_react-code-input']
+  input:last-child {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 
 //////
 .sumra-Button-valid {
-    opacity: 100%;
-    transition: 0.3s ease-in-out;
+  opacity: 100%;
+  transition: 0.3s ease-in-out;
 }
 .sumra-Button-notvalid {
-    opacity: 35%;
-    transition: 0.3s ease-in-out;
+  opacity: 35%;
+  transition: 0.3s ease-in-out;
 }
 .sumra-Button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    margin: 0 auto;
-    position: relative;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    height: 56px;
-    width: 100%;
-    @media screen and (min-width: 360px) {
-        width: 310px;
-    }
-    border: none;
-    border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  margin: 0 auto;
+  position: relative;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  height: 56px;
+  width: 100%;
+  @media screen and (min-width: 360px) {
+    width: 310px;
+  }
+  border: none;
+  border-radius: 7px;
 }
 
 .sumra-Button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .sumra-Button img {
-    position: relative;
+  position: relative;
 }
 
 .sumra-Button span {
-    position: static;
-    width: 161px;
-    height: 22px;
-    font-family: DM Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    line-height: 22px;
-    text-align: center;
-    color: #ffffff;
+  position: static;
+  width: 161px;
+  height: 22px;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
 }

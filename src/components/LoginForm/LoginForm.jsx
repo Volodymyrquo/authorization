@@ -27,11 +27,12 @@ export const LoginForm = ({
     const href = e.target.parentElement.href
     localStorage.setItem('messenger', messenger)
     localStorage.setItem('href', href)
-    const referral = localStorage.getItem('referral_code_primary')
+    const referral = window.location.pathname.slice(1)
     localStorage.setItem('referral_code', referral)
-    /*  getPath('/verify') */
   }
-
+  const openInNewTab = (url) => {
+    window.open(url, '_blank').focus()
+  }
   const submitPhoneNumber = async (event) => {
     event.preventDefault()
     if (!number) return
@@ -85,8 +86,6 @@ export const LoginForm = ({
     localStorage.removeItem('confirm-refresh')
     localStorage.removeItem('create-refresh')
     localStorage.removeItem('isExist')
-    const referral = window.location.pathname.slice(1)
-    localStorage.setItem('referral_code_primary', referral)
   }, [])
 
   return (
@@ -122,14 +121,12 @@ export const LoginForm = ({
                       }
                       key={index}
                       onClick={goToVeryfycationCodePage}>
-                      <a href={href} target='_blank' rel='noreferrer'>
-                        <img
-                          src={v.image}
-                          onClick={() => goToAuthPage()}
-                          width={46}
-                          alt={v.title}
-                        />
-                      </a>
+                      <img
+                        src={v.image}
+                        onClick={() => openInNewTab(href)}
+                        width={46}
+                        alt={v.title}
+                      />
                     </li>
                   </Link>
                 )
@@ -175,7 +172,7 @@ export const LoginForm = ({
             style={{
               background: colors
                 ? colors?.buttonBackground
-                : 'linear-gradient(90deg, rgba(2, 194, 255, 0.5) 0%, rgba(14, 106, 227, 0.5) 101.97%), linear-gradient(0deg, #0376DA, #0376DA)',
+                : 'linear-gradient(270deg, #EDA416 0%, #E97819 100%)',
             }}
             className='login-form__button-id'>
             Login with Sumra ID
