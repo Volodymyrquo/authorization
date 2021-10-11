@@ -116,7 +116,7 @@ export const LoginForm = ({
                   <Link to='/verify'>
                     <li
                       className={
-                        socialLinks.length > 7
+                        socialLinks.length > 3
                           ? 'login-form__li-app'
                           : 'login-form__li'
                       }
