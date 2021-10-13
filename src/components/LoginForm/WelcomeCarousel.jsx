@@ -6,13 +6,14 @@ import 'swiper/swiper.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 // import Swiper core and required modules
 import SwiperCore, { Pagination, Autoplay } from 'swiper/core'
-
+import Slide1 from '../../assets/images/slide-1-min.jpg'
+import Slide2 from '../../assets/images/slide-2-min.jpg'
 // install Swiper modules
 
 SwiperCore.use([Pagination, Autoplay])
 
 const WelcomeCarousel = ({ img }) => {
-  const [logo, Slide1, Slide2] = img
+  const [logo] = img
   return (
     <Swiper
       className='swiper-container'

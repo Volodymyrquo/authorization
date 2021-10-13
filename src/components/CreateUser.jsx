@@ -88,7 +88,9 @@ const CreateUser = ({
       localStorage.setItem('token_api', token_api)
 
       localStorage.setItem('username', username)
-
+      console.log(`####token_api####   ${token_api}`)
+      console.log(`####user_id####   ${user_id}`)
+      console.log(`####user_status####   ${user_status}`)
       getPath('/home')
       setTimeout(() => window.location.reload(), 100)
       localStorage.removeItem('onestep-auth-refresh')

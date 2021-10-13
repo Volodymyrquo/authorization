@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { isMobile } from 'react-device-detect'
-// import socialLinks from './socialLinks';
+/* import socialLinks from './socialLinks'; */
 // import { sendPhone } from '../../api/api';
 import sendIcon from '../../assets/images/send.svg'
 import { sendPhone, sendSMS } from '../../api/api'
